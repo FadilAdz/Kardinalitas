@@ -18,7 +18,7 @@
 
 
 
-![img](doc/soal.png) 
+![img](doc/Soal.png) 
 
 <br> <br>
 
