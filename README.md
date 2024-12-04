@@ -246,13 +246,248 @@ public class Item {
 
 - Fungsi ini berguna untuk mengambil nama item yang telah diset pada saat objek diciptakan. <br> <br>
 
+5. <b>Metode ```toString()```</b>: <br>
+- Metode ini merupakan override dari metode ```toString()``` bawaan Java, yang memberikan representasi string dari objek ```Item```. <br>
 
+- Saat objek ```Item``` digunakan dalam konteks string (misalnya, dalam ```System.out.println()```), metode ini akan dipanggil, dan akan mengembalikan string dalam format ```"Item : " + name```. <br> <br>
 
+6. <b>Metode ```getPrice()```</b>: <br>
+- Metode ```getPrice()``` ditulis tetapi belum diimplementasikan secara fungsional. Saat dipanggil, ia akan melempar UnsupportedOperationException dengan pesan ```"Not supported yet."```. <br>
 
+- Ini menunjukkan bahwa kelas ini belum mendukung fitur untuk mendapatkan harga item, tetapi kemungkinan besar fitur ini akan diimplementasikan pada masa mendatang. 
 
+<br> <br>
 
+### File <b>Main.java</b>
 
+``` java
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+public class Main {
+    public static void main(String[] args) {
+        // Create a customer
+        Customer customer = new Customer("FadilAdz", "Bekasi");
+
+        // Create an item
+        Item PS5 = new Item("PS5");
+
+        // Order Date
+        SimpleDateFormat od = new SimpleDateFormat("yyyy-MM-dd");
+        Date orderDate = new Date();
+
+        // Create an order
+        Order order = new Order(PS5, orderDate, "Offline");
+
+        // Payments
+        Payment cashPayment = new Cash(9700000);
+        Payment checkPayment = new Check(9700000, "1234567891011");
+        Payment creditPayment = new Credit(9700000, "2024-12-03");
+
+        // Output
+        System.out.println("Customer\n" + customer);
+        System.out.println("\nOrder\n" + order);
+        System.out.println("\nPayments");
+        System.out.println(cashPayment);
+        System.out.println(checkPayment);
+        System.out.println(creditPayment);
+    }
+}
+```
+
+Kode ini adalah program Java yang menampilkan simulasi sederhana dari sebuah sistem pemesanan barang dengan berbagai opsi pembayaran (tunai, cek, dan kartu kredit). Kode ini terdiri dari beberapa kelas utama seperti ```Customer```, ```Item```, ```Order```, dan berbagai jenis pembayaran (```Cash```, ```Check```, dan ```Credit```). Program akan mencetak detail pelanggan, pesanan, dan detail pembayaran yang digunakan. <br> <br>
+
+<b>Penjelasan Detail Kode</b>: <br>
+``` java
+import java.text.SimpleDateFormat;
+import java.util.Date;
+```
+
+- ```SimpleDateFormat``` : Digunakan untuk memformat tanggal sesuai dengan pola yang diinginkan (misalnya "yyyy-MM-dd"). <br>
+- ```Date``` : Kelas bawaan Java yang merepresentasikan tanggal dan waktu. <br> <br>
+
+<b>Fungsi ```main```</b>: <br>
+``` java
+public static void main(String[] args) {
+```
+
+Fungsi ```main``` adalah titik awal dari eksekusi program. Semua logika dalam fungsi ini akan dieksekusi saat program dijalankan. <br> <br>
+
+<b>Membuat Objek ```Customer```</b>: <br>
+``` java
+Customer customer = new Customer("FadilAdz", "Bekasi");
+```
+
+- Membuat objek ```Customer``` dengan nama pelanggan FadilAdz dan alamat Bekasi. <br>
+
+- Customer adalah sebuah kelas yang menyimpan informasi pelanggan, yang telah dijelaskan sebelumnya. <br> <br>
+
+<b>Membuat Objek ```Item```</b>: <br>
+``` java
+Item PS5 = new Item("PS5");
+```
+
+- Membuat objek Item dengan nama barang PS5. <br>
+
+- Item adalah sebuah kelas yang menyimpan nama barang yang dipesan. <br> <br>
+
+<b>Membuat Tanggal Pesanan</b>: <br>
+``` java
+SimpleDateFormat od = new SimpleDateFormat("yyyy-MM-dd");
+Date orderDate = new Date();
+```
+
+- ```SimpleDateFormat``` digunakan untuk memformat tanggal pesanan menjadi format ```"yyyy-MM-dd"```. <br>
+
+- ```Date orderDate = new Date();``` menciptakan objek tanggal saat ini. Ini berarti tanggal pemesanan akan menjadi tanggal ketika program dijalankan. <br> <br>
+
+<b>Membuat Objek ```Order```</b>: <br>
+``` java
+Order order = new Order(PS5, orderDate, "Offline");
+```
+
+- Membuat objek Order dengan detail barang (item PS5), tanggal pesanan (orderDate), dan metode pemesanan (Offline). <br>
+
+- Order adalah kelas yang menyimpan informasi pesanan. <br> <br>
+
+<b>Membuat Objek Pembayaran</b>: <br>
+Terdapat tiga jenis pembayaran yang dibuat, yaitu pembayaran dengan tunai (```Cash```), cek (```Check```), dan kartu kredit (```Credit```) : <br> 
+
+1. <b>Pembayaran dengan Tunai :</b>
+``` java
+Payment cashPayment = new Cash(9700000);
+```
+
+- Membuat objek pembayaran tunai (```Cash```) sebesar 9.700.000. <br>
+
+- Cash merupakan kelas turunan dari ```Payment``` yang mengimplementasikan pembayaran tunai. <br> <br>
+
+2. <b>Mengecek Pembayaran :</b>
+``` java
+Payment checkPayment = new Check(9700000, "1234567891011");
+```
+
+- Membuat objek pembayaran dengan cek (```Check```) sebesar 9.700.000, dengan nomor bank ID "1234567891011". <br>
+
+- Check adalah kelas turunan dari ```Payment``` yang mengimplementasikan pembayaran melalui cek. <br> <br>
+
+3. <b>Pembayaran Menggunakan Kartu Kredit :</b>
+``` java
+Payment creditPayment = new Credit(9700000, "2024-12-03");
+```
+
+- Membuat objek pembayaran dengan kartu kredit (```Credit```) sebesar 9.700.000 dengan tanggal kadaluarsa "2024-12-03". <br>
+
+- Credit adalah kelas turunan dari ```Payment``` yang mengimplementasikan pembayaran menggunakan kartu kredit.
+
+<br> <br>
+
+### File <b>Order.java</b>
+
+``` java
+import java.util.Date;
+
+public class Order {
+    private Item item;
+    private Date orderDate;
+    private String status;
+
+    public Order(Item item, Date orderDate, String status) {
+        this.item = item;
+        this.orderDate = orderDate;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    @Override
+    public String toString() {
+        return item.toString() + "\nDate : " + orderDate + "\nStatus : " + status;
+    }
+}
+```
+
+1. <b>Kelas ```Order```</b>: <br>
+- Kelas ini digunakan untuk merepresentasikan pesanan yang dibuat oleh pelanggan. <br>
+
+- Kelas ini menyimpan informasi terkait barang yang dipesan (```item```), tanggal pesanan (```orderDate```), dan status pesanan (```status```). <br> <br>
+
+2. <b>Atribut ```item```</b>: <br>
+- Atribut ini bertipe ```Item``` dan bersifat private, yang menyimpan informasi mengenai barang yang dipesan. <br>
+
+- Kelas ```Item``` adalah kelas lain yang menyimpan data barang seperti nama dan harga. <br> <br>
+
+3. <b>Atribut ```orderDate```</b>: <br>
+- Atribut ini bertipe ```Date``` dan juga bersifat private. Ini menyimpan informasi tentang kapan pesanan dibuat. <br>
+
+- ```Date``` adalah kelas bawaan dari Java yang digunakan untuk merepresentasikan tanggal dan waktu. <br> <br>
+
+4. <b>Atribut ```status```</b>: <br>
+- Atribut ini bertipe ```String```, menyimpan status pesanan (misalnya, "Offline", "Online", "Delivered"). <br>
+
+- Atribut ini menunjukkan status atau kondisi pesanan. <br> <br>
+
+5. <b>Konstruktor ```Order(Item item, Date orderDate, String status)```</b>: <br>
+- Konstruktor ini menerima tiga parameter : <br>
+```Item item```: Barang yang dipesan. <br>
+```Date orderDate```: Tanggal pesanan dibuat. <br>
+```String status```: Status pesanan. <br> <br>
+
+- Konstruktor ini digunakan untuk menginisialisasi nilai atribut ```item```, ```orderDate```, dan ```status``` dengan nilai yang diberikan saat pembuatan objek ```Order```. <br> <br>
+
+6. <b>Metode ```getStatus()```</b>: <br>
+- Metode ini mengembalikan nilai dari atribut status, yang merepresentasikan ```status``` pesanan. <br> <br>
+
+7. <b>Metode ```getOrderData()```</b>: <br>
+- Metode ini mengembalikan nilai dari atribut ```orderDate```, yang merepresentasikan tanggal pesanan dibuat. <br> <br>
+
+8. <b>Metode ```getItem()```</b>: <br>
+- Metode ini mengembalikan objek ```Item``` yang dipesan. Objek ```Item``` ini menyimpan informasi tentang barang yang dipesan. <br> <br>
+
+9. <b>Metode ```toString()```</b>: <br>
+- Metode ini memberikan representasi string dari objek ```Order```. Ini akan mencetak : <br>
+```item``` : memanggil ```toString()``` dari kelas ```Item``` untuk menampilkan nama item. <br>
+```orderDate```: tanggal pesanan. <br>
+```status```: status pesanan. <br> <br>
+
+- Override dari metode ```toString()``` digunakan untuk memberikan format yang lebih mudah dibaca saat objek dicetak.
+
+<br> <br>
+
+### File <b>OrderDetail.java</b>
+
+``` java
+public class OrderDetail {
+    private Item item;
+    private int quantity;
+
+    public OrderDetail(Item item, int quantity) {
+        this.item = item;
+        this.quantity = quantity;
+    }
+
+    public double calculateTotal() {
+        return item.getPrice() * quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetail{item=" + item + ", quantity=" + quantity + ", total=" + calculateTotal() + "}";
+    }
+}
+```
+
+1. <b>Kelas ```OrderDetail```</b>: <br>
 
 
 
