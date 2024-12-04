@@ -441,7 +441,7 @@ public class Order {
 - Konstruktor ini menerima tiga parameter : <br>
 ```Item item```: Barang yang dipesan. <br>
 ```Date orderDate```: Tanggal pesanan dibuat. <br>
-```String status```: Status pesanan. <br> <br>
+```String status```: Status pesanan. <br> 
 
 - Konstruktor ini digunakan untuk menginisialisasi nilai atribut ```item```, ```orderDate```, dan ```status``` dengan nilai yang diberikan saat pembuatan objek ```Order```. <br> <br>
 
@@ -458,7 +458,7 @@ public class Order {
 - Metode ini memberikan representasi string dari objek ```Order```. Ini akan mencetak : <br>
 ```item``` : memanggil ```toString()``` dari kelas ```Item``` untuk menampilkan nama item. <br>
 ```orderDate```: tanggal pesanan. <br>
-```status```: status pesanan. <br> <br>
+```status```: status pesanan. <br> 
 
 - Override dari metode ```toString()``` digunakan untuk memberikan format yang lebih mudah dibaca saat objek dicetak.
 
@@ -488,45 +488,81 @@ public class OrderDetail {
 ```
 
 1. <b>Kelas ```OrderDetail```</b>: <br>
+- Kelas ini digunakan untuk merepresentasikan detail dari sebuah pesanan yang berisi item (barang) yang dipesan dan jumlah barang yang dipesan (quantity). <br>
 
+- Kelas ini juga menghitung total biaya untuk pesanan berdasarkan harga item dan kuantitasnya. <br> <br>
 
+2. <b>Atribut ```item```</b>: <br>
+- Atribut ini bertipe ```Item``` dan menyimpan informasi tentang barang yang dipesan. <br> 
 
+- Kelas ```Item``` adalah kelas lain yang digunakan untuk merepresentasikan detail item, seperti nama dan harga barang. <br> <br>
 
+3. <b>Atribut ```quantity```</b>: <br>
+- Atribut ini bertipe int dan menyimpan jumlah item yang dipesan. <br>
 
+- Ini menunjukkan berapa banyak barang yang dipesan. <br> <br>
 
+4. <b>Konstruktor ```OrderDetail(Item item, int quantity)```</b>: <br>
+- Konstruktor ini digunakan untuk menginisialisasi objek ```OrderDetail``` dengan barang tertentu (```item```) dan jumlah barang (```quantity```). <br>
 
+- Parameter : <br>
+```Item item``` : Barang yang dipesan. <br>
+```int quantity``` : Jumlah barang yang dipesan <br> <br>
 
+5. <b>Metode ```calculateTotal()```</b>: <br>
+- Metode ini menghitung total harga pesanan dengan mengalikan harga barang (```item.getPrice()```) dengan jumlah barang (```quantity```). <br>
 
+- Menggunakan metode ```getPrice()``` dari kelas ```Item``` untuk mendapatkan harga barang. <br> <br>
 
+6. <b>Metode ```toString()```</b>: <br>
+- Metode ini memberikan representasi string dari objek ```OrderDetail```. <br> <br>
 
+- Ini akan mencetak informasi tentang item (melalui ```item.toString()```), jumlah barang, dan total harga pesanan (dihitung melalui ```calculateTotal()```).
 
+<br> <br>
 
+### File <b>Payment.java</b>
 
+``` java
+public abstract class Payment {
+    protected double amount;
 
+    public Payment(double amount) {
+        this.amount = amount;
+    }
 
+    public double getAmount() {
+        return amount;
+    }
 
+    @Override
+    public String toString() {
+        return "Payment amount : " + amount;
+    }
+}
+```
 
+1. <b>Kelas ```Payment``` adalah kelas abstrak</b>: <br>
+- Kelas ini dideklarasikan dengan kata kunci ```abstract```, yang berarti kelas ini tidak dapat diinstansiasi secara langsung. Sebagai gantinya, kelas ini biasanya digunakan sebagai kelas dasar (superclass) untuk kelas lain yang lebih spesifik, seperti ```Cash```, ```Check```, dan ```Credit``` yang mewarisi kelas ini. <br>
 
+- Kelas ```Payment``` berfungsi untuk mendefinisikan struktur dasar dan beberapa fungsi umum yang digunakan oleh semua jenis pembayaran. <br> <br>
 
+2. <b>Atribut ```amount```</b>: <br>
+- Atribut ```amount``` bertipe ```double``` dan bersifat protected. Ini berarti atribut ini dapat diakses oleh kelas ```Payment``` dan kelas-kelas turunannya. <br>
 
+- ```amount``` menyimpan jumlah uang yang terkait dengan pembayaran. Ini adalah nilai dasar yang digunakan oleh semua jenis pembayaran, seperti pembayaran tunai, cek, atau kartu kredit. <br> <br>
 
+3. <b>Konstruktor ```Payment(double amount)```</b>: <br>
+- Konstruktor ini digunakan untuk menginisialisasi objek ```Payment``` dengan nilai ```amount``` yang diberikan saat objek diciptakan. <br>
 
+- Parameter : <br>
+```double amount``` : Nilai pembayaran yang ingin disimpan dalam objek ini. <br> <br>
 
+4. <b>Metode ```getAmount()```</b>: <br>
+- Metode ini mengembalikan nilai dari atribut ```amount```, yaitu jumlah pembayaran yang terkait dengan objek pembayaran tersebut. <br> <br>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+5. <b>Metode ```toString()```</b>: <br>
+- Metode ```toString()``` di-override untuk memberikan representasi string dari objek ```Payment```. Metode ini mencetak informasi mengenai jumlah pembayaran dalam format yang mudah dibaca.
 
 
 
