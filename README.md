@@ -144,23 +144,107 @@ public class Credit extends Payment {
 ### File <b>Customer.java</b>
 
 ``` java
+public class Customer {
+    private String name;
+    private String address;
 
+    public Customer(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public String toString() {
+        return "Nama : " + name + "\nAlamat : " + address;
+    }
+}
 ```
 
+1. <b>Kelas ```Customer```</b>: <br>
+- Kelas ini merepresentasikan sebuah entitas Customer (pelanggan) dengan dua atribut : ```name``` (nama) dan ```address``` (alamat). <br>
 
+- Kelas ini menyediakan konstruktor untuk menginisialisasi data pelanggan serta beberapa metode untuk mengakses dan menampilkan data tersebut. <br> <br>
 
+2. <b>Atribut ```name``` dan ```address```</b>: <br>
+- Kelas ini memiliki dua atribut : <br>
+```name``` (bertipe ```String```) : Menyimpan nama dari pelanggan.<br>
+```address``` (bertipe ```String```) : Menyimpan alamat dari pelanggan. <br>
 
+- Kedua atribut ini bersifat private, yang berarti hanya bisa diakses secara langsung dari dalam kelas ```Customer```. <br> <br>
 
+3. <b>Konstruktor ```Customer(String name, String address)```</b>: <br>
+- Konstruktor ini digunakan untuk menginisialisasi objek ```Customer``` dengan nilai ```name``` dan ```address``` yang diberikan sebagai parameter. <br>
 
+- ```this.name = name;``` dan ```this.address = address;``` digunakan untuk mengisi atribut ```name``` dan ```address``` dengan nilai yang diterima melalui parameter. <br> <br>
 
+4. <b>Metode ```getName()``` dan ```getAddress()```</b>: <br>
+- Metode ```getName()``` mengembalikan nilai dari atribut ```name```, yaitu nama pelanggan. <br>
 
+- Metode ```getAddress()``` mengembalikan nilai dari atribut ```address```, yaitu alamat pelanggan. <br>
 
+- Kedua metode ini adalah metode akses (getter) yang memungkinkan pengguna dari kelas ini untuk mengambil nilai dari atribut yang bersifat private. <br> <br>
 
+5. <b>Metode ```toString()```</b>: <br>
+- Metode ini merupakan override dari metode ```toString()``` bawaan Java dan digunakan untuk memberikan representasi string dari objek ```Customer```. <br>
 
+- Dalam hal ini, string yang dikembalikan menampilkan "Nama" dan "Alamat" pelanggan dengan format yang jelas, memisahkan nama dan alamat dengan baris baru (```\n```). <br>
 
+- Saat objek ```Customer``` dipanggil dalam konteks string (seperti dalam ```System.out.println()```), metode ini akan menampilkan detail pelanggan. 
 
+<br> <br>
 
+### File <b>Item.java</b>
 
+``` java
+public class Item {
+    private String name;
+
+    public Item(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "Item : " + name;
+    }
+
+    int getPrice() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+}
+```
+
+1. <b>Kelas ```Item```</b>: <br>
+- Kelas ```Item``` digunakan untuk merepresentasikan sebuah item atau barang, dengan atribut utama name (nama item). <br>
+
+- Kelas ini menyediakan konstruktor untuk menginisialisasi nama item, metode untuk mendapatkan nama item, serta metode yang belum diimplementasikan untuk mendapatkan harga item. <br> <br>
+
+2. <b>Atribut ```Name```</b>: <br>
+- Atribut ```name``` bertipe ```String``` dan bersifat private, yang berarti hanya bisa diakses dari dalam kelas ```Item```. <br>
+
+- Atribut ini digunakan untuk menyimpan nama dari item yang dibuat. <br> <br>
+
+3. <b>Konstruktor ```Item(String name)```</b>: <br>
+- Konstruktor ini menerima parameter ```name``` bertipe ```String``` dan digunakan untuk menginisialisasi nama item. <br>
+
+- ```this.name = name;``` digunakan untuk mengisi atribut ```name``` dengan nilai yang diterima dari argumen yang diberikan saat pembuatan objek ```Item```.<br> <br>
+
+4. <b>Metode ```getName()```</b>: <br>
+- Metode ini mengembalikan nilai dari atribut ```name```, yaitu nama item. <br>
+
+- Fungsi ini berguna untuk mengambil nama item yang telah diset pada saat objek diciptakan. <br> <br>
 
 
 
